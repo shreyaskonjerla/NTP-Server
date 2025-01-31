@@ -16,7 +16,8 @@ stopFlag = False
 isMalicious = False
 monitorList = None
 
-MY_TIME = 3915335217
+# You need to add 220898880 to the UNIX timestamps as NTP timestamps start at Jan 01, 1900
+MY_TIME = (1706695207 + 2208988800)
 
 def malicious_time(timestamp):
     """Modify timestamp as malicious behaviour
@@ -379,7 +380,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('monitorList', type=str, default='monitors.txt', help="path to text file of space-separated ip addresses")
 parser.add_argument('--isMalicious', type=bool, default=True, required=False, help="indicates whether the server should be malicious (default True)")
 parser.add_argument('--TrueServer', type=bool, default=False, required=False, help="indicates whether the server should be a true NTP server (default False)")
-parser.add_argument('--Offset', type=int, default=900, required=False, help="Define offset for Server in Malicious Mode (default 1000)")
+parser.add_argument('--Offset', type=int, default=0, required=False, help="Define offset for Server in Malicious Mode (default 1000)")
 args = parser.parse_args()
         
 isMalicious = args.isMalicious
